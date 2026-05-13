@@ -264,8 +264,19 @@
     overflow: hidden;
     display: flex; flex-direction: column; justify-content: space-between;
   }
-  .persona__icon { height: 110px; display: flex; align-items: center; justify-content: center; }
+  .persona__icon {
+    height: 110px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 8px;
+  }
   .persona__icon img { max-height: 100%; max-width: 90%; }
+  /* Per-element height tuning so each icon reads at roughly the same
+     visual weight regardless of its natural aspect ratio */
+  .persona__icon--mono   img { height: 96px;  width: auto; }
+  .persona__icon--runner img { height: 96px;  width: auto; }
+  .persona__icon--bolts  img { height: 88px;  width: auto; }
+  .persona__icon--chev   img { height: 56px;  width: auto; }
+  .persona__icon--laurel img { height: 92px;  width: auto; }
   .persona__label {
     font-family: 'Oswald', sans-serif;
     font-size: 1rem;
@@ -326,14 +337,18 @@
   }
   .product:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(15,47,47,0.10); }
   .product__photo {
-    height: 280px;
+    height: 320px;
     margin: 0 auto 18px;
     display: flex; align-items: end; justify-content: center;
   }
   .product__photo img {
-    max-height: 100%; width: auto;
+    width: auto;
     filter: drop-shadow(0 18px 24px rgba(15,47,47,0.18));
   }
+  /* Scale each bottle by real-world volume so Travel < Pro < Large is visible */
+  .product__photo--travel img { height: 220px; }
+  .product__photo--pro    img { height: 280px; }
+  .product__photo--large  img { height: 320px; }
   .product__tag {
     position: absolute; top: 16px; right: 16px;
     background: var(--gold); color: var(--ink);
@@ -362,15 +377,23 @@
     background: var(--green-2); border: 1px solid rgba(217,175,55,0.25);
     padding: 32px 26px; text-align: center; position: relative;
   }
-  .bundle__ribbon {
-    position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
-    width: 220px;
+  .bundle__ribbon-wrap {
+    position: absolute;
+    top: -34px; left: 50%; transform: translateX(-50%);
+    width: 260px; height: 86px;
+    display: flex; align-items: center; justify-content: center;
   }
-  .bundle__ribbon-label {
-    position: absolute; top: 6px; left: 0; right: 0; text-align: center;
+  .bundle__ribbon-wrap img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .bundle__ribbon-wrap span {
+    position: relative; z-index: 1;
     font-family: 'Oswald', sans-serif;
     font-size: 0.78rem; letter-spacing: 0.2em; color: var(--ink); font-weight: 700;
     text-transform: uppercase;
+    padding: 0 50px; text-align: center;
   }
   .bundle h3 { font-family: 'Oswald', sans-serif; color: var(--cream); font-size: 1.4rem; margin-top: 14px; }
   .bundle__contents { color: rgba(234,233,203,0.7); font-size: 0.9rem; margin: 8px 0 22px; }
@@ -486,19 +509,31 @@
   .featured { background: var(--cream-2); }
   .featured__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
   .featured__visual { position: relative; }
-  .featured__ribbon { position: absolute; top: -10px; left: -10px; width: 240px; z-index: 3; }
-  .featured__ribbon-label {
-    position: absolute; top: 18px; left: 18px; z-index: 4; width: 224px; text-align: center;
-    font-family: 'Oswald', sans-serif; font-size: 0.72rem; letter-spacing: 0.22em; color: var(--ink); font-weight: 700;
+  .featured__ribbon-wrap {
+    position: absolute; top: 0; left: 0; z-index: 3;
+    width: 260px; height: 86px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .featured__ribbon-wrap img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .featured__ribbon-wrap span {
+    position: relative; z-index: 1;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.78rem; letter-spacing: 0.22em; color: var(--ink); font-weight: 700;
     text-transform: uppercase;
+    padding: 0 50px; text-align: center;
   }
   .featured__photo {
-    max-width: 460px; margin: 0 auto;
+    margin: 0 auto;
     display: flex; align-items: center; justify-content: center;
     position: relative;
+    min-height: 520px;
   }
   .featured__photo img.bottle {
-    width: 100%; height: auto;
+    width: auto; height: 520px; max-width: 100%;
     filter: drop-shadow(0 30px 40px rgba(15,47,47,0.22));
   }
   .featured h2 { color: var(--green); }
@@ -762,35 +797,35 @@
     </div>
     <div class="personas__grid">
       <div class="persona">
-        <div class="persona__icon"><img src="Brand Elements/04_A_athlete_monogram.png" alt="" /></div>
+        <div class="persona__icon persona__icon--mono"><img src="Brand Elements/04_A_athlete_monogram.png" alt="" /></div>
         <div>
           <div class="persona__label">Persona 01</div>
           <div class="persona__name">Combat Sports</div>
         </div>
       </div>
       <div class="persona">
-        <div class="persona__icon"><img src="Brand Elements/05_runner_silhouette_icon.png" alt="" /></div>
+        <div class="persona__icon persona__icon--runner"><img src="Brand Elements/05_runner_silhouette_icon.png" alt="" /></div>
         <div>
           <div class="persona__label">Persona 02</div>
           <div class="persona__name">Soccer &amp;<br/>Endurance</div>
         </div>
       </div>
       <div class="persona">
-        <div class="persona__icon"><img src="Brand Elements/07_crossed_lightning_bolts.png" alt="" /></div>
+        <div class="persona__icon persona__icon--bolts"><img src="Brand Elements/07_crossed_lightning_bolts.png" alt="" /></div>
         <div>
           <div class="persona__label">Persona 03</div>
           <div class="persona__name">Hyrox &amp; Lifting</div>
         </div>
       </div>
       <div class="persona">
-        <div class="persona__icon"><img src="Brand Elements/01_triple_chevron_forward.png" alt="" /></div>
+        <div class="persona__icon persona__icon--chev"><img src="Brand Elements/01_triple_chevron_forward.png" alt="" /></div>
         <div>
           <div class="persona__label">Persona 04</div>
           <div class="persona__name">Pickleball &amp; Paddle</div>
         </div>
       </div>
       <div class="persona">
-        <div class="persona__icon"><img src="Brand Elements/06_laurel_wreath_open.png" alt="" /></div>
+        <div class="persona__icon persona__icon--laurel"><img src="Brand Elements/06_laurel_wreath_open.png" alt="" /></div>
         <div>
           <div class="persona__label">Persona 05</div>
           <div class="persona__name">Therapists &amp;<br/>Bodyworkers</div>
@@ -850,7 +885,7 @@
 
       <div class="product">
         <span class="product__tag">Travel</span>
-        <div class="product__photo">
+        <div class="product__photo product__photo--travel">
           <img src="Brand Elements/bottle_travel.png" alt="Athlon Rub Travel · 3.4 fl oz / 100 mL" />
         </div>
         <div class="product__stars">
@@ -869,7 +904,7 @@
 
       <div class="product">
         <span class="product__tag">Most Popular</span>
-        <div class="product__photo">
+        <div class="product__photo product__photo--pro">
           <img src="Brand Elements/bottle_pro.png" alt="Athlon Rub Pro · 8.5 fl oz / 250 mL" />
         </div>
         <div class="product__stars">
@@ -888,7 +923,7 @@
 
       <div class="product">
         <span class="product__tag">Pro &amp; Team</span>
-        <div class="product__photo">
+        <div class="product__photo product__photo--large">
           <img src="Brand Elements/bottle_large.png" alt="Athlon Rub Large · 17 fl oz / 500 mL" />
         </div>
         <div class="product__stars">
@@ -918,9 +953,11 @@
     <div class="bundles__grid">
 
       <div class="bundle">
-        <img class="bundle__ribbon" src="Brand Elements/10_ribbon_banner.png" alt="" />
-        <div class="bundle__ribbon-label">Training Pair</div>
-        <h3 style="margin-top:42px">The Two-Pack</h3>
+        <div class="bundle__ribbon-wrap">
+          <img src="Brand Elements/10_ribbon_banner.png" alt="" />
+          <span>Training Pair</span>
+        </div>
+        <h3 style="margin-top:48px">The Two-Pack</h3>
         <div class="bundle__contents">Two Athlon Rub Pro bottles · One in the bag, one on the shelf.</div>
         <div class="bundle__price">$54</div>
         <div class="bundle__strike">$60</div>
@@ -928,9 +965,11 @@
       </div>
 
       <div class="bundle">
-        <img class="bundle__ribbon" src="Brand Elements/10_ribbon_banner.png" alt="" />
-        <div class="bundle__ribbon-label">Best Value</div>
-        <h3 style="margin-top:42px">The Therapist</h3>
+        <div class="bundle__ribbon-wrap">
+          <img src="Brand Elements/10_ribbon_banner.png" alt="" />
+          <span>Best Value</span>
+        </div>
+        <h3 style="margin-top:48px">The Therapist</h3>
         <div class="bundle__contents">One Large + one Pro · For the practitioner who saves their hands during long sessions.</div>
         <div class="bundle__price">$72</div>
         <div class="bundle__strike">$80</div>
@@ -938,9 +977,11 @@
       </div>
 
       <div class="bundle">
-        <img class="bundle__ribbon" src="Brand Elements/10_ribbon_banner.png" alt="" />
-        <div class="bundle__ribbon-label">Team Pack</div>
-        <h3 style="margin-top:42px">The Gym</h3>
+        <div class="bundle__ribbon-wrap">
+          <img src="Brand Elements/10_ribbon_banner.png" alt="" />
+          <span>Team Pack</span>
+        </div>
+        <h3 style="margin-top:48px">The Gym</h3>
         <div class="bundle__contents">Three Large bottles · For team training rooms, fight gyms, and academies.</div>
         <div class="bundle__price">$135</div>
         <div class="bundle__strike">$150</div>
@@ -1092,8 +1133,10 @@
   <div class="container">
     <div class="featured__inner">
       <div class="featured__visual">
-        <img class="featured__ribbon" src="Brand Elements/10_ribbon_banner.png" alt="" />
-        <div class="featured__ribbon-label">Most Popular</div>
+        <div class="featured__ribbon-wrap">
+          <img src="Brand Elements/10_ribbon_banner.png" alt="" />
+          <span>Most Popular</span>
+        </div>
         <div class="featured__photo">
           <img class="bottle" src="Brand Elements/bottle_pro.png" alt="Athlon Rub Pro · 8.5 fl oz / 250 mL" />
         </div>
@@ -1101,7 +1144,7 @@
       <div>
         <span class="eyebrow">The Daily Driver</span>
         <h2 style="margin-top:10px">Athlon Rub Pro</h2>
-        <p style="color:var(--green-2); margin-top:18px">The 100 mL bottle Anthony built for himself. Calibrated for athletes who train five or more times a week — the warm-up, the in-between, the after.</p>
+        <p style="color:var(--green-2); margin-top:18px">The 8.5 fl oz / 250 mL bottle Anthony built for himself. Calibrated for athletes who train five or more times a week — the warm-up, the in-between, the after.</p>
         <ul class="featured__bullets">
           <li><img src="Brand Elements/01_triple_chevron_forward.png" alt="" /> Wintergreen, an ingredient in Athlon Rub, is widely recognized for its warming properties</li>
           <li><img src="Brand Elements/01_triple_chevron_forward.png" alt="" /> Arnica Montana, an ingredient in Athlon Rub, is one of the most studied botanicals in topical recovery</li>
