@@ -150,33 +150,17 @@
     border-bottom: 2px solid var(--gold);
     padding-bottom: 4px;
   }
-  .hero__visual { position: relative; height: 520px; }
+  .hero__visual { position: relative; height: 560px; display: flex; align-items: center; justify-content: center; }
   .hero__streaks {
     position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
-    width: 720px; max-width: none; opacity: 0.55;
+    width: 720px; max-width: none; opacity: 0.40;
+    z-index: 1;
   }
   .hero__bottle {
-    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-    width: 280px; height: 460px;
-    background: linear-gradient(180deg, rgba(15,47,47,0.0) 0%, rgba(15,47,47,0.0) 12%, #663616 14%, #8a4a1f 30%, #663616 70%, #2a1408 100%);
-    border-radius: 16px 16px 22px 22px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 40px rgba(255,255,255,0.05);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    z-index: 2;
-    border-top: 60px solid #1a1a1a;
+    position: relative; z-index: 2;
+    height: 100%; width: auto;
+    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.45)) drop-shadow(0 0 25px rgba(0,0,0,0.35));
   }
-  .hero__bottle::before {
-    content: ''; position: absolute; top: -78px; left: 50%; transform: translateX(-50%);
-    width: 60px; height: 78px; background: #2a2a2a; border-radius: 6px 6px 0 0;
-  }
-  .hero__bottle-label {
-    background: var(--cream); color: var(--green);
-    padding: 24px 18px; width: 80%; text-align: center;
-    border: 2px solid var(--gold);
-  }
-  .hero__bottle-label img { width: 60px; margin: 0 auto 8px; }
-  .hero__bottle-label .name { font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 0.16em; font-size: 1.3rem; }
-  .hero__bottle-label .ml { font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.4em; color: var(--gold-2); margin-top: 6px; }
 
   @media (max-width: 900px) {
     .hero__grid { grid-template-columns: 1fr; }
@@ -341,37 +325,14 @@
     position: relative;
   }
   .product:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(15,47,47,0.10); }
-  .product__shield {
-    width: 200px; margin: 0 auto 18px; position: relative;
+  .product__photo {
+    height: 280px;
+    margin: 0 auto 18px;
+    display: flex; align-items: end; justify-content: center;
   }
-  .product__shield img.frame { width: 100%; }
-  .product__shield .bottle {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .product__shield .bottle-mock {
-    width: 60%; height: 76%;
-    background: linear-gradient(180deg, #2a1408 0%, #663616 30%, #8a4a1f 60%, #663616 100%);
-    border-radius: 6px 6px 10px 10px;
-    border-top: 14px solid #1a1a1a;
-    margin-top: 10px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .product__shield .bottle-label {
-    background: var(--cream);
-    color: var(--green);
-    padding: 8px 6px;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 0.65rem;
-    letter-spacing: 0.16em;
-    width: 80%;
-    text-align: center;
-    border: 1px solid var(--gold);
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-  }
-  .product__shield .bottle-label img {
-    width: 32px; height: auto;
+  .product__photo img {
+    max-height: 100%; width: auto;
+    filter: drop-shadow(0 18px 24px rgba(15,47,47,0.18));
   }
   .product__tag {
     position: absolute; top: 16px; right: 16px;
@@ -531,24 +492,14 @@
     font-family: 'Oswald', sans-serif; font-size: 0.72rem; letter-spacing: 0.22em; color: var(--ink); font-weight: 700;
     text-transform: uppercase;
   }
-  .featured__shield { width: 100%; max-width: 460px; margin: 0 auto; position: relative; }
-  .featured__shield img.frame { width: 100%; }
-  .featured__shield .bottle-wrap {
-    position: absolute; inset: 0;
+  .featured__photo {
+    max-width: 460px; margin: 0 auto;
     display: flex; align-items: center; justify-content: center;
+    position: relative;
   }
-  .featured__shield .bottle-mock {
-    width: 50%; height: 78%;
-    background: linear-gradient(180deg, #2a1408 0%, #663616 30%, #8a4a1f 60%, #663616 100%);
-    border-radius: 8px 8px 12px 12px;
-    border-top: 22px solid #1a1a1a;
-    margin-top: 16px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .featured__shield .bottle-label {
-    background: var(--cream); color: var(--green);
-    padding: 12px 8px; width: 80%; text-align: center; border: 1px solid var(--gold);
-    font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 0.16em; font-size: 0.82rem;
+  .featured__photo img.bottle {
+    width: 100%; height: auto;
+    filter: drop-shadow(0 30px 40px rgba(15,47,47,0.22));
   }
   .featured h2 { color: var(--green); }
   .featured__bullets { list-style: none; padding: 0; margin: 24px 0 32px; }
@@ -719,13 +670,7 @@
       </div>
       <div class="hero__visual">
         <img class="hero__streaks" src="Brand Elements/09_dynamic_speed_streaks.png" alt="" aria-hidden="true" />
-        <div class="hero__bottle">
-          <div class="hero__bottle-label">
-            <img src="Brand Elements/00_logo_shield.png" alt="" style="width:72px; height:auto;" />
-            <div class="name">ATHLON RUB</div>
-            <div class="ml">100 ML · PRO</div>
-          </div>
-        </div>
+        <img class="hero__bottle" src="Brand Elements/bottle_pro_hero.png" alt="Athlon Rub Pro · 8.5 fl oz / 250 mL" />
       </div>
     </div>
   </div>
@@ -905,16 +850,8 @@
 
       <div class="product">
         <span class="product__tag">Travel</span>
-        <div class="product__shield">
-          <img class="frame" src="Brand Elements/03_shield_outline_frame.png" alt="" />
-          <div class="bottle">
-            <div class="bottle-mock">
-              <div class="bottle-label">
-                <img src="Brand Elements/00_logo_shield.png" alt="" />
-                <span>ATHLON<br/>RUB</span>
-              </div>
-            </div>
-          </div>
+        <div class="product__photo">
+          <img src="Brand Elements/bottle_travel.png" alt="Athlon Rub Travel · 3.4 fl oz / 100 mL" />
         </div>
         <div class="product__stars">
           <img src="Brand Elements/02_athletic_five_point_star.png" alt="" />
@@ -924,7 +861,7 @@
           <img src="Brand Elements/02_athletic_five_point_star.png" alt="" />
         </div>
         <h3>Athlon Rub Travel</h3>
-        <div class="product__use">Personal · 60 mL</div>
+        <div class="product__use">Personal · 3.4 fl oz / 100 mL</div>
         <div class="product__desc">First-time-buyer size. Fits any gear bag. Designed for the athlete trying us out at the expo, the gym, or the recommendation of a training partner.</div>
         <div class="product__price">$19.99</div>
         <a class="btn" href="#">Add to Bag <img class="chev" src="Brand Elements/01_triple_chevron_forward.png" alt="" /></a>
@@ -932,16 +869,8 @@
 
       <div class="product">
         <span class="product__tag">Most Popular</span>
-        <div class="product__shield">
-          <img class="frame" src="Brand Elements/03_shield_outline_frame.png" alt="" />
-          <div class="bottle">
-            <div class="bottle-mock">
-              <div class="bottle-label">
-                <img src="Brand Elements/00_logo_shield.png" alt="" />
-                <span>ATHLON<br/>RUB · PRO</span>
-              </div>
-            </div>
-          </div>
+        <div class="product__photo">
+          <img src="Brand Elements/bottle_pro.png" alt="Athlon Rub Pro · 8.5 fl oz / 250 mL" />
         </div>
         <div class="product__stars">
           <img src="Brand Elements/02_athletic_five_point_star.png" alt="" />
@@ -951,7 +880,7 @@
           <img src="Brand Elements/02_athletic_five_point_star.png" alt="" />
         </div>
         <h3>Athlon Rub Pro</h3>
-        <div class="product__use">Daily Training · 100 mL</div>
+        <div class="product__use">Daily Training · 8.5 fl oz / 250 mL</div>
         <div class="product__desc">The bottle Anthony built for himself. Sized for daily training, multi-session days, and the athlete who has already made it part of the warm-up.</div>
         <div class="product__price">$30</div>
         <a class="btn" href="#">Add to Bag <img class="chev" src="Brand Elements/01_triple_chevron_forward.png" alt="" /></a>
@@ -959,16 +888,8 @@
 
       <div class="product">
         <span class="product__tag">Pro &amp; Team</span>
-        <div class="product__shield">
-          <img class="frame" src="Brand Elements/03_shield_outline_frame.png" alt="" />
-          <div class="bottle">
-            <div class="bottle-mock">
-              <div class="bottle-label">
-                <img src="Brand Elements/00_logo_shield.png" alt="" />
-                <span>ATHLON<br/>RUB · LRG</span>
-              </div>
-            </div>
-          </div>
+        <div class="product__photo">
+          <img src="Brand Elements/bottle_large.png" alt="Athlon Rub Large · 17 fl oz / 500 mL" />
         </div>
         <div class="product__stars">
           <img src="Brand Elements/02_athletic_five_point_star.png" alt="" />
@@ -978,7 +899,7 @@
           <img src="Brand Elements/02_athletic_five_point_star.png" alt="" />
         </div>
         <h3>Athlon Rub Large</h3>
-        <div class="product__use">Therapist · Gym · Team</div>
+        <div class="product__use">Therapist · Gym · 17 fl oz / 500 mL</div>
         <div class="product__desc">Built for licensed bodyworkers, fight gyms, and team training rooms. The size that earns its place on the shelf and doesn't run out mid-session.</div>
         <div class="product__price">$50</div>
         <a class="btn" href="#">Add to Bag <img class="chev" src="Brand Elements/01_triple_chevron_forward.png" alt="" /></a>
@@ -1173,16 +1094,8 @@
       <div class="featured__visual">
         <img class="featured__ribbon" src="Brand Elements/10_ribbon_banner.png" alt="" />
         <div class="featured__ribbon-label">Most Popular</div>
-        <div class="featured__shield">
-          <img class="frame" src="Brand Elements/03_shield_outline_frame.png" alt="" />
-          <div class="bottle-wrap">
-            <div class="bottle-mock">
-              <div class="bottle-label">
-                <img src="Brand Elements/00_logo_shield.png" alt="" style="width:46px; height:auto; display:block; margin:0 auto 6px;" />
-                ATHLON RUB · PRO<br/>100 ML
-              </div>
-            </div>
-          </div>
+        <div class="featured__photo">
+          <img class="bottle" src="Brand Elements/bottle_pro.png" alt="Athlon Rub Pro · 8.5 fl oz / 250 mL" />
         </div>
       </div>
       <div>
