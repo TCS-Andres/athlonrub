@@ -1,0 +1,22 @@
+# OS noise
+.DS_Store
+Thumbs.db
+
+# ---- SENSITIVE: brand strategy docs ----
+# The Master Brain documents contain founder bio, revenue targets, compliance
+# audit findings, SWOT analysis, and vendor risk notes. These are the
+# permanent property of Athlon Rub and stay out of public source control.
+Athlon_Rub_Master_Brain*.docx
+_brain_clean.txt
+_brain_updated_clean.txt
+
+# ---- Intermediates from local pipelines (large, not needed in repo) ----
+_page1_full.png
+_logo_topsection.png
+Brand Elements/_raw_black_bg/
+Brand Elements/_qa_on_brand_green/
+
+# ---- Secrets ----
+.env
+.env.*
+*.key
