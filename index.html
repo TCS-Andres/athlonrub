@@ -129,6 +129,10 @@
   .hero__eyebrow .bar { height: 1px; width: 50px; background: var(--gold); }
   .hero h1 { color: var(--cream); }
   .hero h1 .gold { color: var(--gold); }
+  .hero h1 .line { display: block; }
+  @media (min-width: 900px) {
+    .hero h1 .line { white-space: nowrap; }
+  }
   .hero__sub {
     max-width: 540px;
     font-size: 1.1rem;
@@ -696,7 +700,10 @@
           <span class="bar"></span>
           <span class="eyebrow">Next-Generation Thai Oil</span>
         </div>
-        <h1>Train. Compete.<br/>Recover. <span class="gold">Repeat.</span></h1>
+        <h1>
+          <span class="line">Train. Compete.</span>
+          <span class="line">Recover. <span class="gold">Repeat.</span></span>
+        </h1>
         <p class="hero__sub">
           A fast-absorbing topical liniment built on a decade of refinement of the
           Thai-liniment tradition. Warming sensation calibrated for athletes who
